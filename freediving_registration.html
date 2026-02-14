@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הרשמה לסדנת צלילה חופשית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ocean-deep: #0A4D68;
+            --ocean-blue: #088395;
+            --ocean-light: #05BFDB;
+            --ocean-foam: #00FFCA;
+            --sand: #F8F6F0;
+            --text-dark: #2C3E50;
+            --success-green: #27AE60;
+        }
+
+        body {
+            font-family: 'Assistant', 'Heebo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(5, 191, 219, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(8, 131, 149, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(0, 255, 202, 0.2) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 650px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-blue) 100%);
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '🌊';
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.1;
+            top: -20px;
+            right: -20px;
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg) translateY(0); }
+            50% { transform: rotate(5deg) translateY(-10px); }
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            color: var(--ocean-foam);
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+        .form-content {
+            padding: 45px 40px;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        label .required {
+            color: #E74C3C;
+            margin-right: 3px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #E8E8E8;
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: 'Assistant', sans-serif;
+            transition: all 0.3s ease;
+            background: #FAFAFA;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            outline: none;
+            border-color: var(--ocean-blue);
+            background: white;
+            box-shadow: 0 4px 12px rgba(8, 131, 149, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 14px 18px;
+            border: 2px solid #E8E8E8;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #FAFAFA;
+        }
+
+        .radio-option:hover {
+            border-color: var(--ocean-light);
+            background: white;
+            transform: translateX(-3px);
+        }
+
+        .radio-option input[type="radio"] {
+            margin-left: 12px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--ocean-blue);
+        }
+
+        .radio-option label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+            flex: 1;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            padding: 16px 18px;
+            border: 2px solid #E8E8E8;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #FAFAFA;
+        }
+
+        .checkbox-group:hover {
+            border-color: var(--ocean-light);
+            background: white;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-left: 12px;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            accent-color: var(--ocean-blue);
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+            flex: 1;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--ocean-blue) 0%, var(--ocean-deep) 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Assistant', sans-serif;
+            box-shadow: 0 4px 15px rgba(8, 131, 149, 0.3);
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(8, 131, 149, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 60px 40px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 0.6s ease-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .success-message h2 {
+            color: var(--ocean-deep);
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .success-message p {
+            color: var(--text-dark);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .success-message .date-highlight {
+            color: var(--ocean-blue);
+            font-weight: 700;
+            font-size: 20px;
+            display: block;
+            margin: 15px 0;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 16px;
+            }
+            
+            .header {
+                padding: 35px 25px;
+            }
+            
+            .header h1 {
+                font-size: 26px;
+            }
+            
+            .form-content {
+                padding: 30px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤿 הרשמה לסדנת צלילה חופשית</h1>
+            <p>מלא/י את הפרטים ונהיה איתך בקשר</p>
+        </div>
+
+        <form id="registrationForm" class="form-content">
+            <div class="form-group">
+                <label for="name"><span class="required">*</span>שם מלא</label>
+                <input type="text" id="name" name="name" required placeholder="הזן/י את שמך המלא">
+            </div>
+
+            <div class="form-group">
+                <label for="email"><span class="required">*</span>כתובת מייל</label>
+                <input type="email" id="email" name="email" required placeholder="example@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="phone"><span class="required">*</span>מספר טלפון</label>
+                <input type="tel" id="phone" name="phone" required placeholder="050-1234567">
+            </div>
+
+            <div class="form-group">
+                <label><span class="required">*</span>תאריך מועדף</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="date1" name="date" value="20.3" required>
+                        <label for="date1">20 במרץ (20.3)</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="date2" name="date" value="10.4" required>
+                        <label for="date2">10 באפריל (10.4)</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="date3" name="date" value="17.4" required>
+                        <label for="date3">17 באפריל (17.4)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>ציוד צלילה</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="wetsuit" name="wetsuit" value="yes">
+                    <label for="wetsuit">יש לי חליפת צלילה</label>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">שלח הרשמה 🌊</button>
+        </form>
+
+        <div id="successMessage" class="success-message">
+            <div class="success-icon">✅</div>
+            <h2>תודה על הרשמתך!</h2>
+            <p>נרשמת בהצלחה לסדנת צלילה חופשית</p>
+            <span class="date-highlight" id="selectedDate"></span>
+            <p style="margin-top: 20px;">נהיה איתך בקשר בהקדם להסדרת התשלום</p>
+            <p style="color: var(--ocean-blue); margin-top: 15px;">🏊‍♀️ מצפים לראותך!</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.querySelector('input[name="date"]:checked').value;
+            const wetsuit = document.getElementById('wetsuit').checked ? 'כן' : 'לא';
+            
+            // Get date text
+            let dateText = '';
+            if (date === '20.3') dateText = '20 במרץ';
+            if (date === '10.4') dateText = '10 באפריל';
+            if (date === '17.4') dateText = '17 באפריל';
+            
+            // Create email body
+            const subject = encodeURIComponent('הרשמה חדשה לסדנת צלילה חופשית');
+            const body = encodeURIComponent(
+                `הרשמה חדשה לסדנת צלילה חופשית\n\n` +
+                `שם: ${name}\n` +
+                `מייל: ${email}\n` +
+                `טלפון: ${phone}\n` +
+                `תאריך מועדף: ${dateText} (${date})\n` +
+                `חליפת צלילה: ${wetsuit}\n\n` +
+                `נשלח דרך טופס ההרשמה`
+            );
+            
+            // Send email using mailto
+            window.location.href = `mailto:merav.dvori@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Show success message
+            document.querySelector('.form-content').style.display = 'none';
+            const successMsg = document.getElementById('successMessage');
+            successMsg.classList.add('show');
+            document.getElementById('selectedDate').textContent = `תאריך: ${dateText}`;
+        });
+    </script>
+</body>
+</html>
